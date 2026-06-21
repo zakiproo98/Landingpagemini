@@ -21,7 +21,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Mini Shop | [Titre Principal]</title>
-  <meta name="description" content="[Description Courte] — Livraison gratuite. Paiement à la livraison partout au Maroc." />
+  <meta name="description" content="[Description Courte] — التوصيل مجاني. الدفع عند الاستلام في جميع أنحاء المغرب.." />
 
   <!-- 🔁 À REMPLACER : remplacez "votredomaine.ma" par votre vrai nom de domaine -->
   <link rel="canonical" href="https://votredomaine.ma/" />
@@ -117,10 +117,15 @@
             <source src="videos/produit.mp4" type="video/mp4">
           </video>
         -->
-        <button class="media-placeholder__play" type="button" aria-label="Lire la vidéo">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5Z"/></svg>
-        </button>
-        <span class="media-placeholder__label">[Vidéo Produit — Remplacer]</span>
+        <video class="media-placeholder__real"
+       autoplay
+       muted
+       loop
+       playsinline>
+
+    <source src="Videos/hero-video.mp4" type="video/mp4">
+
+</video>
       </div>
     </div>
 
@@ -196,21 +201,44 @@
 
       <!-- 🔁 À REMPLACER : grande image produit (1200x900px recommandé) -->
       <div class="media-placeholder gallery__main reveal" data-zoom data-lightbox>
-        <span class="media-placeholder__label">[Image Produit Principale — Remplacer]</span>
-        <span class="zoom-hint"><svg class="icon icon--sm" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="m21 21-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Zoom</span>
-      </div>
+
+    <img src="Images/photo1.png"
+         alt="مسدس ماء لاسلكي عالي الضغط"
+         class="media-placeholder__real">
+
+    <span class="zoom-hint">
+        <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/>
+            <path d="m21 21-3.5-3.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        Zoom
+    </span>
+
+</div>
 
       <!-- 🔁 À REMPLACER : grille de photos secondaires (zoom au clic / survol) -->
-      <div class="gallery__grid">
+      <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
+
+    <img src="Images/photo2.png"
+         alt="مسدس ماء عالي الضغط"
+         class="media-placeholder__real">
+
+</div>
         <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
-          <span class="media-placeholder__label">[Photo 1]</span>
-        </div>
+
+    <img src="Images/photo3.png"
+         alt="مسدس ماء عالي الضغط"
+         class="media-placeholder__real">
+
+</div>
         <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
-          <span class="media-placeholder__label">[Photo 2]</span>
-        </div>
-        <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
-          <span class="media-placeholder__label">[Photo 3]</span>
-        </div>
+
+    <img src="Images/photo4.png"
+         alt="مسدس ماء عالي الضغط"
+         class="media-placeholder__real">
+
+</div>
       </div>
     </div>
   </section>
