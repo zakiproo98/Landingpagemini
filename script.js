@@ -220,25 +220,47 @@ document.addEventListener("DOMContentLoaded", () => {
       orderForm.querySelector(".is-invalid")?.focus();
       return;
     }
+       const submitBtn = orderForm.querySelector('button[type="submit"]');
+submitBtn.disabled = true;
+submitBtn.textContent = "جاري إرسال الطلب...";
+
+const payload = {
+  product: orderForm.product.value,
+  fullName: fullName.value.trim(),
+  phone: cleanPhone,
+  city: city.value.trim(),
+  address: address.value.trim(),
+  quantity: qtyInput.value,
+  total: PRODUCT_PRICE * parseInt(qtyInput.value, 10)
+};
+
+fetch("https://script.google.com/macros/s/AKfycbzOq7qlCNY46jQqYkpVn5bBvb757u2ZU0hvMafrQ87MbZ-mwTaNxl0JS46RTiZGyroq/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(payload)
+})
+.then(() => {
+  orderForm.reset();
+  qtyInput.value = 1;
+  updateTotal();
+
+  orderSuccess.hidden = false;
+  orderSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = "تأكيد الطلب";
+})
+.catch(() => {
+  alert("حدث خطأ أثناء إرسال الطلب. المرجو المحاولة مرة أخرى أو التواصل معنا عبر واتساب.");
+  submitBtn.disabled = false;
+  submitBtn.textContent = "تأكيد الطلب";
+});
 
     /* --------------------------------------------------------
-       🔁 ENVOI DU FORMULAIRE
-       Remplacez ce bloc par votre intégration réelle :
-       - Google Sheets (via Apps Script Web App)
-       - Votre backend / CRM COD (ex: YouCan, Sendcloud, etc.)
-       - Une simple requête fetch() vers votre endpoint
 
-       Exemple :
-       fetch("https://votre-endpoint.com/commande", {
-         method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify(Object.fromEntries(new FormData(orderForm)))
-       });
-    -------------------------------------------------------- */
-
-    // 🔁 ÉVÉNEMENT TRACKING : décommentez si Meta Pixel / GA sont actifs
-    // if (window.fbq) fbq('track', 'Purchase', { currency: "MAD", value: PRODUCT_PRICE * parseInt(qtyInput.value, 10) });
-    // if (window.gtag) gtag('event', 'purchase');
 
     orderForm.reset();
     qtyInput.value = 1;
