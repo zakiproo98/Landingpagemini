@@ -259,20 +259,3 @@ fetch("https://script.google.com/macros/s/AKfycbzOq7qlCNY46jQqYkpVn5bBvb757u2ZU0
   submitBtn.textContent = "تأكيد الطلب";
 });
 
-    /* --------------------------------------------------------
-
-
-    orderForm.reset();
-    qtyInput.value = 1;
-    updateTotal();
-
-    orderSuccess.hidden = false;
-    orderSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
-
-  // Retire le style d'erreur dès que l'utilisateur corrige le champ
-  orderForm.querySelectorAll("input, textarea").forEach((field) => {
-    field.addEventListener("input", () => field.classList.remove("is-invalid"));
-  });
-
-});
