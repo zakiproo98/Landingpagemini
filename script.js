@@ -1,25 +1,6 @@
-/* ============================================================
-   MINI SHOP — SCRIPT.JS
-   Interactions : reveal au scroll, accordéon FAQ, zoom image,
-   stepper quantité + calcul total, validation formulaire,
-   CTA sticky mobile.
-
-   🔁 À REMPLACER :
-     - PRODUCT_PRICE : le prix réel du produit (sert au calcul du total)
-     - L'URL d'envoi du formulaire (voir bloc "ENVOI DU FORMULAIRE")
-   ============================================================ */
-
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* ----------------------------------------------------------
-     1. PRIX PRODUIT (utilisé pour le calcul du total commande)
-     🔁 À REMPLACER par le prix réel (en DH, nombre entier)
-     ---------------------------------------------------------- */
   const PRODUCT_PRICE = 199;
 
-  /* ----------------------------------------------------------
-     2. REVEAL AU SCROLL (apparition douce des sections)
-     ---------------------------------------------------------- */
   const revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
@@ -38,16 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
-  /* ----------------------------------------------------------
-     3. ACCORDÉON FAQ
-     ---------------------------------------------------------- */
   document.querySelectorAll(".accordion__trigger").forEach((trigger) => {
     trigger.addEventListener("click", () => {
       const item = trigger.closest(".accordion__item");
       const panel = item.querySelector(".accordion__panel");
       const isOpen = item.classList.contains("is-open");
 
-      // Ferme les autres items ouverts (comportement accordéon classique)
       document.querySelectorAll(".accordion__item.is-open").forEach((openItem) => {
         if (openItem !== item) {
           openItem.classList.remove("is-open");
@@ -68,49 +45,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ----------------------------------------------------------
-     4. ZOOM IMAGE / LIGHTBOX
-     Clic sur une image placeholder (ou vraie image plus tard)
-     → ouverture d'une vue agrandie en plein écran.
-     ---------------------------------------------------------- */
   const lightbox = document.getElementById("lightbox");
-  const lightboxContent = lightbox.querySelector(".lightbox__content");
+  const lightboxContent = lightbox?.querySelector(".lightbox__content");
   const lightboxClose = document.getElementById("lightboxClose");
 
-  document.querySelectorAll("[data-lightbox]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const label = el.querySelector(".media-placeholder__label");
-      lightboxContent.innerHTML = "";
-      // 🔁 Quand vous remplacerez les placeholders par de vraies images,
-      // clonez plutôt l'élément <img> ici au lieu du texte du label.
-      const span = document.createElement("span");
-      span.textContent = label ? label.textContent : "Image";
-      lightboxContent.appendChild(span);
+  if (lightbox && lightboxContent && lightboxClose) {
+    document.querySelectorAll("[data-lightbox]").forEach((el) => {
+      el.addEventListener("click", () => {
+        lightboxContent.innerHTML = "";
 
-      lightbox.classList.add("is-open");
-      lightbox.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
+        const img = el.querySelector("img");
+        if (img) {
+          const clonedImg = img.cloneNode(true);
+          lightboxContent.appendChild(clonedImg);
+        } else {
+          const label = el.querySelector(".media-placeholder__label");
+          const span = document.createElement("span");
+          span.textContent = label ? label.textContent : "Image";
+          lightboxContent.appendChild(span);
+        }
+
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
     });
-  });
 
-  function closeLightbox() {
-    lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
   }
-  lightboxClose.addEventListener("click", closeLightbox);
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
-  });
 
-  /* ----------------------------------------------------------
-     5. VIDÉO PLACEHOLDER — bouton "play"
-     🔁 Une fois la vraie vidéo intégrée (balise <video>), ce bloc
-     peut être adapté pour lancer video.play() au clic.
-     ---------------------------------------------------------- */
   const playBtn = document.querySelector(".media-placeholder__play");
   if (playBtn) {
     playBtn.addEventListener("click", (e) => {
@@ -119,15 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (realVideo) {
         realVideo.play();
         playBtn.style.display = "none";
-      } else {
-        alert("🔁 Remplacez ce placeholder par votre vraie vidéo produit.");
       }
     });
   }
 
-  /* ----------------------------------------------------------
-     6. STEPPER QUANTITÉ + CALCUL DU TOTAL
-     ---------------------------------------------------------- */
   const qtyInput = document.getElementById("quantity");
   const orderTotalEl = document.getElementById("orderTotal");
 
@@ -146,28 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
       updateTotal();
     });
   });
+
   if (qtyInput) updateTotal();
 
-  /* ----------------------------------------------------------
-     7. BOUTONS "COMMANDER MAINTENANT" → scroll fluide vers le formulaire
-     ---------------------------------------------------------- */
   document.querySelectorAll(".js-scroll-to-order").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       document.getElementById("order").scrollIntoView({ behavior: "smooth", block: "start" });
       setTimeout(() => document.getElementById("fullName")?.focus(), 600);
-
-      // 🔁 ÉVÉNEMENT TRACKING : décommentez si Meta Pixel / GA sont actifs
-      // if (window.fbq) fbq('track', 'InitiateCheckout');
-      // if (window.gtag) gtag('event', 'begin_checkout');
     });
   });
 
-  /* ----------------------------------------------------------
-     8. CTA STICKY MOBILE — masqué quand le formulaire est visible
-     ---------------------------------------------------------- */
   const stickyCta = document.getElementById("stickyCta");
   const orderSection = document.getElementById("order");
+
   if (stickyCta && orderSection && "IntersectionObserver" in window) {
     const stickyObserver = new IntersectionObserver(
       (entries) => {
@@ -180,13 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
     stickyObserver.observe(orderSection);
   }
 
-  /* ----------------------------------------------------------
-     9. VALIDATION + ENVOI DU FORMULAIRE DE COMMANDE
-     ---------------------------------------------------------- */
   const orderForm = document.getElementById("orderForm");
   const orderSuccess = document.getElementById("orderSuccess");
-
-  // Format simplifié des numéros marocains : 0[5-7]XXXXXXXX
   const PHONE_REGEX = /^0[5-7][0-9]{8}$/;
 
   function setFieldError(field, hasError) {
@@ -220,42 +177,45 @@ document.addEventListener("DOMContentLoaded", () => {
       orderForm.querySelector(".is-invalid")?.focus();
       return;
     }
-       const submitBtn = orderForm.querySelector('button[type="submit"]');
-submitBtn.disabled = true;
-submitBtn.textContent = "جاري إرسال الطلب...";
 
-const payload = {
-  product: orderForm.product.value,
-  fullName: fullName.value.trim(),
-  phone: cleanPhone,
-  city: city.value.trim(),
-  address: address.value.trim(),
-  quantity: qtyInput.value,
-  total: PRODUCT_PRICE * parseInt(qtyInput.value, 10)
-};
+    const submitBtn = orderForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري إرسال الطلب...";
 
-fetch("https://script.google.com/macros/s/AKfycbzOq7qlCNY46jQqYkpVn5bBvb757u2ZU0hvMafrQ87MbZ-mwTaNxl0JS46RTiZGyroq/exec", {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(payload)
-})
-.then(() => {
-  orderForm.reset();
-  qtyInput.value = 1;
-  updateTotal();
+    const payload = {
+      product: orderForm.product.value,
+      fullName: fullName.value.trim(),
+      phone: cleanPhone,
+      city: city.value.trim(),
+      address: address.value.trim(),
+      quantity: qtyInput.value,
+      total: PRODUCT_PRICE * parseInt(qtyInput.value, 10)
+    };
 
-  orderSuccess.hidden = false;
-  orderSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+    fetch("https://script.google.com/macros/s/AKfycbzOq7qlCNY46jQqYkpVn5bBvb757u2ZU0hvMafrQ87MbZ-mwTaNxl0JS46RTiZGyroq/exec", {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(payload)
+    })
+      .then(() => {
+        orderForm.reset();
+        qtyInput.value = 1;
+        updateTotal();
 
-  submitBtn.disabled = false;
-  submitBtn.textContent = "تأكيد الطلب";
-})
-.catch(() => {
-  alert("حدث خطأ أثناء إرسال الطلب. المرجو المحاولة مرة أخرى أو التواصل معنا عبر واتساب.");
-  submitBtn.disabled = false;
-  submitBtn.textContent = "تأكيد الطلب";
+        orderSuccess.hidden = false;
+        orderSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = "تأكيد الطلب";
+      })
+      .catch(() => {
+        alert("حدث خطأ أثناء إرسال الطلب. المرجو المحاولة مرة أخرى أو التواصل معنا عبر واتساب.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "تأكيد الطلب";
+      });
+  });
+
+  orderForm.querySelectorAll("input, textarea").forEach((field) => {
+    field.addEventListener("input", () => field.classList.remove("is-invalid"));
+  });
 });
-
