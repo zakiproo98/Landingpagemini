@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MINI SHOP — LANDING PAGE PRODUIT UNIQUE (COD MAROC)
+  ============================================================
+  Direction RTL activée par défaut (marché marocain / arabe).
+  Tous les textes visibles sont des PLACEHOLDERS entre crochets [ ].
+  Remplacez-les par le vrai contenu produit avant publication.
+
+  Fichiers liés :
+    - style.css  → tous les styles (design tokens en haut du fichier)
+    - script.js  → interactions (CTA sticky, accordéon, zoom, formulaire)
+
+  Voir les commentaires "🔁 À REMPLACER" dans tout le fichier pour
+  la liste exacte des éléments à personnaliser (images, vidéo,
+  textes, numéro WhatsApp, IDs de tracking, domaine).
+  ============================================================
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Mini Shop | [Titre Principal]</title>
+  <meta name="description" content="[Description Courte] — Livraison gratuite. Paiement à la livraison partout au Maroc." />
+
+  <!-- 🔁 À REMPLACER : remplacez "votredomaine.ma" par votre vrai nom de domaine -->
+  <link rel="canonical" href="https://votredomaine.ma/" />
+  <meta property="og:title" content="Mini Shop | [Titre Principal]" />
+  <meta property="og:description" content="[Description Courte]" />
+  <!-- 🔁 À REMPLACER : image de partage Facebook/Instagram (1200x630px) -->
+  <meta property="og:image" content="images/og-cover.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon — 🔁 À REMPLACER par le favicon de la marque -->
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <!-- Police Arabic-friendly : Cairo (alternative : IBM Plex Sans Arabic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ============================================================
+       🔁 À REMPLACER : GOOGLE ANALYTICS (GA4)
+       Remplacez "G-XXXXXXXXXX" par votre ID de mesure réel.
+       ============================================================ -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- ============================================================
+       🔁 À REMPLACER : META PIXEL (Facebook/Instagram Ads)
+       Remplacez "0000000000000000" par votre Pixel ID réel.
+       ============================================================ -->
+  <!--
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '0000000000000000');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=0000000000000000&ev=PageView&noscript=1"
+  /></noscript>
+  -->
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       ============================================================ -->
+  <header class="hero">
+    <div class="container hero__top">
+      <!-- 🔁 À REMPLACER : logo réel (SVG ou PNG transparent) -->
+      <div class="logo">
+        <span class="logo__mark">MS</span>
+        <span class="logo__text">Mini Shop</span>
+      </div>
+    </div>
+
+    <!-- Bandeau de confiance -->
+    <ul class="trust-row container" aria-label="Garanties boutique">
+      <li class="trust-row__item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10M3 16h10M3 16v1a2 2 0 0 0 2 2m8-3v3m0-3h7v-4l-3-4h-4m0 4h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="19" r="1.6" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="19" r="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>[Livraison Gratuite]</span>
+      </li>
+      <li class="trust-row__item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="6" width="19" height="13" rx="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 10.5h19" stroke="currentColor" stroke-width="1.6"/><path d="M6 14.5h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>[Paiement à la Livraison]</span>
+      </li>
+      <li class="trust-row__item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 12v4a2 2 0 0 0 2 2h1v-6H5a1 1 0 0 0-1 1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 12v4a2 2 0 0 1-2 2h-1v-6h1a1 1 0 0 1 1 1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span>[Service Client]</span>
+      </li>
+    </ul>
+
+    <!-- Vidéo / Visuel principal -->
+    <div class="container">
+      <!-- 🔁 À REMPLACER : insérez votre <video> ou <img> produit ici -->
+      <div class="media-placeholder hero__media reveal" data-zoom>
+        <!--
+          Exemple d'intégration vidéo réelle :
+          <video class="media-placeholder__real" autoplay muted loop playsinline poster="images/poster.jpg">
+            <source src="videos/produit.mp4" type="video/mp4">
+          </video>
+        -->
+        <button class="media-placeholder__play" type="button" aria-label="Lire la vidéo">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5Z"/></svg>
+        </button>
+        <span class="media-placeholder__label">[Vidéo Produit — Remplacer]</span>
+      </div>
+    </div>
+
+    <div class="container hero__content reveal">
+      <h1 class="hero__title">[Titre Principal]</h1>
+      <p class="hero__subtitle">[Description Courte]</p>
+
+      <div class="price-block">
+        <div class="price-block__ribbon">[Promo]</div>
+        <span class="price-block__old">[Ancien Prix] DH</span>
+        <span class="price-block__current">[Prix Actuel] DH</span>
+      </div>
+
+      <div class="hero__cta">
+        <a href="#order" class="btn btn--primary btn--lg js-scroll-to-order">
+          [Commander Maintenant]
+        </a>
+        <!-- 🔁 À REMPLACER : numéro WhatsApp (format international sans le +, ex: 2126XXXXXXXX) -->
+        <a href="https://wa.me/2126XXXXXXXX?text=Bonjour%2C%20je%20suis%20intéressé(e)%20par%20[Titre%20Principal]"
+           class="btn btn--outline btn--lg" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2 22l5.27-1.38a9.9 9.9 0 0 0 4.77 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12 .17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+          [Contacter via WhatsApp]
+        </a>
+      </div>
+
+      <p class="hero__microcopy">
+        <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Aucun paiement en ligne requis — vous payez à la réception
+      </p>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       SECTION 2 — PROBLÈME / SOLUTION
+       ============================================================ -->
+  <section class="section problem-solution">
+    <div class="container">
+      <h2 class="section__title reveal">[Titre Section Problème / Solution]</h2>
+      <div class="cards-grid cards-grid--3">
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5-2 2m-9 9-2 2m13 0-2-2m-9-9-2-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/></svg>
+          </div>
+          <h3>[Avantage 1]</h3>
+          <p>[Description courte de l'avantage 1, deux lignes maximum pour rester lisible sur mobile.]</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>[Avantage 2]</h3>
+          <p>[Description courte de l'avantage 2, mettez en avant un bénéfice concret pour le client.]</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>[Avantage 3]</h3>
+          <p>[Description courte de l'avantage 3, idéalement orientée résultat / transformation.]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3 — GALERIE PRODUIT
+       ============================================================ -->
+  <section class="section gallery">
+    <div class="container">
+      <h2 class="section__title reveal">Découvrez le produit en détail</h2>
+
+      <!-- 🔁 À REMPLACER : grande image produit (1200x900px recommandé) -->
+      <div class="media-placeholder gallery__main reveal" data-zoom data-lightbox>
+        <span class="media-placeholder__label">[Image Produit Principale — Remplacer]</span>
+        <span class="zoom-hint"><svg class="icon icon--sm" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="m21 21-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Zoom</span>
+      </div>
+
+      <!-- 🔁 À REMPLACER : grille de photos secondaires (zoom au clic / survol) -->
+      <div class="gallery__grid">
+        <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
+          <span class="media-placeholder__label">[Photo 1]</span>
+        </div>
+        <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
+          <span class="media-placeholder__label">[Photo 2]</span>
+        </div>
+        <div class="media-placeholder gallery__thumb reveal" data-zoom data-lightbox>
+          <span class="media-placeholder__label">[Photo 3]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4 — AVANTAGES (BENEFITS)
+       ============================================================ -->
+  <section class="section benefits">
+    <div class="container">
+      <h2 class="section__title reveal">[Titre Section Avantages]</h2>
+      <div class="cards-grid cards-grid--4">
+        <article class="benefit-card reveal">
+          <div class="benefit-card__icon">①</div>
+          <h3>[Bénéfice 1]</h3>
+          <p>[Description du bénéfice 1]</p>
+        </article>
+        <article class="benefit-card reveal">
+          <div class="benefit-card__icon">②</div>
+          <h3>[Bénéfice 2]</h3>
+          <p>[Description du bénéfice 2]</p>
+        </article>
+        <article class="benefit-card reveal">
+          <div class="benefit-card__icon">③</div>
+          <h3>[Bénéfice 3]</h3>
+          <p>[Description du bénéfice 3]</p>
+        </article>
+        <article class="benefit-card reveal">
+          <div class="benefit-card__icon">④</div>
+          <h3>[Bénéfice 4]</h3>
+          <p>[Description du bénéfice 4]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5 — COMMENT ÇA MARCHE
+       ============================================================ -->
+  <section class="section how-it-works">
+    <div class="container">
+      <h2 class="section__title reveal">[Titre Comment Ça Marche]</h2>
+      <ol class="timeline">
+        <li class="timeline__step reveal">
+          <span class="timeline__num">1</span>
+          <div class="timeline__body">
+            <h3>[Titre Étape 1]</h3>
+            <p>[Description de l'étape 1 — ex: Remplissez le formulaire de commande]</p>
+          </div>
+        </li>
+        <li class="timeline__step reveal">
+          <span class="timeline__num">2</span>
+          <div class="timeline__body">
+            <h3>[Titre Étape 2]</h3>
+            <p>[Description de l'étape 2 — ex: Confirmation par téléphone sous 24h]</p>
+          </div>
+        </li>
+        <li class="timeline__step reveal">
+          <span class="timeline__num">3</span>
+          <div class="timeline__body">
+            <h3>[Titre Étape 3]</h3>
+            <p>[Description de l'étape 3 — ex: Préparation et expédition rapide]</p>
+          </div>
+        </li>
+        <li class="timeline__step reveal">
+          <span class="timeline__num">4</span>
+          <div class="timeline__body">
+            <h3>[Titre Étape 4]</h3>
+            <p>[Description de l'étape 4 — ex: Réception et paiement à la livraison]</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6 — AVANT / APRÈS
+       ============================================================ -->
+  <section class="section before-after">
+    <div class="container">
+      <h2 class="section__title reveal">[Titre Avant / Après]</h2>
+      <div class="before-after__grid reveal">
+        <div class="media-placeholder before-after__img" data-zoom>
+          <span class="tag tag--muted">[Avant]</span>
+          <span class="media-placeholder__label">[Image Avant — Remplacer]</span>
+        </div>
+        <div class="media-placeholder before-after__img" data-zoom>
+          <span class="tag tag--gold">[Après]</span>
+          <span class="media-placeholder__label">[Image Après — Remplacer]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 7 — CONTENU DE LA COMMANDE
+       ============================================================ -->
+  <section class="section whats-included">
+    <div class="container whats-included__grid">
+      <!-- 🔁 À REMPLACER : photo du produit avec tous ses accessoires -->
+      <div class="media-placeholder whats-included__media reveal" data-zoom>
+        <span class="media-placeholder__label">[Image — Contenu du Colis]</span>
+      </div>
+      <div class="whats-included__list reveal">
+        <h2 class="section__title section__title--start">[Ce que vous recevez]</h2>
+        <ul class="check-list">
+          <li>
+            <svg class="icon icon--check" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>[Élément Inclus 1]</span>
+          </li>
+          <li>
+            <svg class="icon icon--check" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>[Élément Inclus 2]</span>
+          </li>
+          <li>
+            <svg class="icon icon--check" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>[Élément Inclus 3]</span>
+          </li>
+          <li>
+            <svg class="icon icon--check" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>[Élément Inclus 4]</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8 — AVIS CLIENTS
+       ============================================================ -->
+  <section class="section reviews">
+    <div class="container">
+      <h2 class="section__title reveal">Ce que disent nos clients</h2>
+      <div class="reviews__summary reveal">
+        <span class="reviews__score">4.8</span>
+        <span class="stars" aria-label="4.8 sur 5">★★★★★</span>
+        <span class="reviews__count">[Nombre d'avis] avis vérifiés</span>
+      </div>
+
+      <div class="cards-grid cards-grid--4">
+        <article class="review-card reveal">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p class="review-card__text">[Avis Client 1 — texte du témoignage]</p>
+          <div class="review-card__author">
+            <span class="avatar">A</span>
+            <div>
+              <strong>[Nom Client 1]</strong>
+              <span class="review-card__city">[Ville]</span>
+            </div>
+          </div>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p class="review-card__text">[Avis Client 2 — texte du témoignage]</p>
+          <div class="review-card__author">
+            <span class="avatar">B</span>
+            <div>
+              <strong>[Nom Client 2]</strong>
+              <span class="review-card__city">[Ville]</span>
+            </div>
+          </div>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p class="review-card__text">[Avis Client 3 — texte du témoignage]</p>
+          <div class="review-card__author">
+            <span class="avatar">C</span>
+            <div>
+              <strong>[Nom Client 3]</strong>
+              <span class="review-card__city">[Ville]</span>
+            </div>
+          </div>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p class="review-card__text">[Avis Client 4 — texte du témoignage]</p>
+          <div class="review-card__author">
+            <span class="avatar">D</span>
+            <div>
+              <strong>[Nom Client 4]</strong>
+              <span class="review-card__city">[Ville]</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 9 — RÉASSURANCE / CONFIANCE
+       ============================================================ -->
+  <section class="section trust-section">
+    <div class="container">
+      <h2 class="section__title section__title--light reveal">[Titre Section Confiance]</h2>
+      <div class="trust-grid">
+        <div class="trust-grid__item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10M3 16h10M3 16v1a2 2 0 0 0 2 2m8-3v3m0-3h7v-4l-3-4h-4m0 4h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Livraison Gratuite</span>
+        </div>
+        <div class="trust-grid__item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="6" width="19" height="13" rx="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 10.5h19" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span>Paiement à la Livraison</span>
+        </div>
+        <div class="trust-grid__item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-7 4 14 2-9 2 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Livraison Rapide</span>
+        </div>
+        <div class="trust-grid__item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 12v4a2 2 0 0 0 2 2h1v-6H5a1 1 0 0 0-1 1Z" stroke="currentColor" stroke-width="1.6"/><path d="M20 12v4a2 2 0 0 1-2 2h-1v-6h1a1 1 0 0 1 1 1Z" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span>Service Client</span>
+        </div>
+        <div class="trust-grid__item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span>Commande Sécurisée</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 10 — FAQ
+       ============================================================ -->
+  <section class="section faq">
+    <div class="container container--narrow">
+      <h2 class="section__title reveal">Questions Fréquentes</h2>
+      <div class="accordion reveal">
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <span>[Question Placeholder 1]</span>
+            <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel">
+            <p>[Réponse Placeholder 1]</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <span>[Question Placeholder 2]</span>
+            <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel">
+            <p>[Réponse Placeholder 2]</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <span>[Question Placeholder 3]</span>
+            <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel">
+            <p>[Réponse Placeholder 3]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 11 — FORMULAIRE DE COMMANDE
+       ============================================================ -->
+  <section class="section order-form" id="order">
+    <div class="container container--narrow">
+      <h2 class="section__title reveal">[Titre Formulaire de Commande]</h2>
+      <p class="order-form__subtitle reveal">Remplissez le formulaire ci-dessous, notre équipe vous contacte pour confirmer votre commande.</p>
+
+      <form class="order-card reveal" id="orderForm" novalidate>
+        <!-- 🔁 Champ caché utile pour identifier le produit côté back-office / Google Sheet -->
+        <input type="hidden" name="product" value="[Titre Principal]" />
+
+        <div class="field">
+          <label for="fullName">Nom Complet</label>
+          <input id="fullName" name="fullName" type="text" placeholder="ex: Mohamed El Amrani" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">Téléphone</label>
+          <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="06 XX XX XX XX" required />
+        </div>
+
+        <div class="field">
+          <label for="city">Ville</label>
+          <input id="city" name="city" type="text" placeholder="ex: Casablanca" required />
+        </div>
+
+        <div class="field">
+          <label for="address">Adresse</label>
+          <textarea id="address" name="address" rows="2" placeholder="Quartier, rue, numéro..." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="quantity">Quantité</label>
+          <div class="stepper">
+            <button type="button" class="stepper__btn" data-step="-1" aria-label="Diminuer la quantité">−</button>
+            <input id="quantity" name="quantity" type="number" min="1" max="10" value="1" readonly />
+            <button type="button" class="stepper__btn" data-step="1" aria-label="Augmenter la quantité">+</button>
+          </div>
+        </div>
+
+        <div class="order-card__total">
+          <span>Total à payer</span>
+          <strong id="orderTotal">[Prix Actuel] DH</strong>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--full">
+          Confirmer ma commande
+        </button>
+
+        <ul class="order-card__perks">
+          <li>
+            <svg class="icon icon--check" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Paiement à la livraison
+          </li>
+          <li>
+            <svg class="icon icon--check" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Livraison gratuite
+          </li>
+        </ul>
+
+        <p class="order-card__success" id="orderSuccess" role="status" hidden>
+          ✓ Votre commande a été reçue. Notre équipe vous appelle très bientôt !
+        </p>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CTA STICKY MOBILE
+       ============================================================ -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-cta__price">
+      <span class="sticky-cta__old">[Ancien Prix] DH</span>
+      <span class="sticky-cta__current">[Prix Actuel] DH</span>
+    </div>
+    <a href="#order" class="btn btn--primary js-scroll-to-order">[Commander Maintenant]</a>
+  </div>
+
+
+  <!-- ============================================================
+       SECTION 12 — FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__top">
+      <div class="logo logo--footer">
+        <span class="logo__mark">MS</span>
+        <span class="logo__text">Mini Shop</span>
+      </div>
+
+      <div class="footer__socials">
+        <!-- 🔁 À REMPLACER : liens réels vers vos réseaux sociaux -->
+        <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.4c0-.9.3-1.5 1.6-1.5h1.5V4.2C16.3 4.1 15.3 4 14.2 4c-2.3 0-3.9 1.4-3.9 4v2.4H7.7v3h2.6V21h3.2Z"/></svg>
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+        </a>
+        <!-- 🔁 À REMPLACER : numéro WhatsApp -->
+        <a href="https://wa.me/2126XXXXXXXX" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2 22l5.27-1.38a9.9 9.9 0 0 0 4.77 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="container footer__links" aria-label="Liens utiles">
+      <a href="#">À Propos</a>
+      <a href="#">Politique de Confidentialité</a>
+      <a href="#">Conditions d'Utilisation</a>
+      <a href="#">Retours &amp; Échanges</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="container footer__bottom">
+      <!-- 🔁 À REMPLACER : nom de domaine / année -->
+      <p>© 2026 Mini Shop — votredomaine.ma. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox (zoom image plein écran) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Fermer">✕</button>
+    <div class="lightbox__content"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
