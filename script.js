@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
      1. PRIX PRODUIT (utilisé pour le calcul du total commande)
      🔁 À REMPLACER par le prix réel (en DH, nombre entier)
      ---------------------------------------------------------- */
-  const PRODUCT_PRICE = 299;
+  const PRODUCT_PRICE = 199;
 
   /* ----------------------------------------------------------
      2. REVEAL AU SCROLL (apparition douce des sections)
